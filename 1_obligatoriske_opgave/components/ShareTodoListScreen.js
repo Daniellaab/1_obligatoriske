@@ -1,10 +1,8 @@
-// ShareTodoListScreen.js
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
 function ShareTodoListScreen({ route }) {
 
-  // Implement sharing functionality here
 
   return (
     <View style={styles.container}>
@@ -13,7 +11,7 @@ function ShareTodoListScreen({ route }) {
         <Button
           title="Del"
           onPress={() => {
-            // Implement sharing action here for listToShare
+            // Her skal man kunne videreudvikle
           }}
         />
       </View>

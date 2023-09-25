@@ -1,19 +1,21 @@
-// CreateTodoScreen.js
 import CheckBox from 'expo-checkbox';
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, FlatList, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function CreateTodoScreen({ navigation }) {
+  // Brug af useState og useEffect hooks
   const [todo, setTodo] = useState('');
   const [todoList, setTodoList] = useState([]);
   const STORAGE_KEY = '@MyTodoApp:todoList';
 
   useEffect(() => {
-    // Load the saved to-do list when the component mounts
+    // Hente de gemte lister
     loadTodoList();
   }, []);
 
+  //gemte opgaver hentes fra AsyncStorage ved opstart
+  // loadTodoList: Henter opgaver fra AsyncStorage og opdaterer todoList-tilstanden
   const loadTodoList = async () => {
     try {
       const storedTodoList = await AsyncStorage.getItem(STORAGE_KEY);
@@ -26,6 +28,7 @@ function CreateTodoScreen({ navigation }) {
     }
   };
 
+  //Tilføjer en ny opgave til todoList og gemmer den i AsyncStorage. Opretter en fejlmeddelelse, hvis input-teksten er tom.
   const addTodo = () => {
     if (todo.trim() !== '') {
       const updatedTodoList = [...todoList, { text: todo, completed: false }];
@@ -39,21 +42,22 @@ function CreateTodoScreen({ navigation }) {
     }
   };
 
+  //Markerer en opgave som fuldført eller ufuldført.
   const toggleTodo = (index) => {
     const updatedTodoList = [...todoList];
     updatedTodoList[index].completed = !updatedTodoList[index].completed;
     setTodoList(updatedTodoList);
   };
 
+  //Sletter en opgave fra todoList og gemmer den opdaterede liste i AsyncStorage.
   const deleteTodo = (index) => {
     const updatedTodoList = [...todoList];
     updatedTodoList.splice(index, 1);
     setTodoList(updatedTodoList);
 
-    // Save the updated to-do list to AsyncStorage
     saveTodoList(updatedTodoList);
   };
-
+    // Gemmer den aktuelle opgaveliste i AsyncStorage og navigerer til MyTodoLists
   const saveTodoList = async (updatedList) => {
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(updatedList));

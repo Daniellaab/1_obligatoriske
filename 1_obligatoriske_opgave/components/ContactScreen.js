@@ -2,17 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 
 const ContactScreen = () => {
-  // Function to open a URL in the device's default web browser
+  // Åbner en URL i den enheds standardwebbrowser
   const openURL = (url) => {
     Linking.openURL(url);
   };
 
-  // Function to initiate a phone call
+  // Initierer et telefonopkald til det angivne telefonnummer
   const callNumber = (phoneNumber) => {
     Linking.openURL(`tel:${phoneNumber}`);
   };
 
-  // Function to send an email
+  // Åbner enhedens standard-e-mailklient for at sende en e-mail til den angivne e-mailadresse
   const sendEmail = (email) => {
     Linking.openURL(`mailto:${email}`);
   };

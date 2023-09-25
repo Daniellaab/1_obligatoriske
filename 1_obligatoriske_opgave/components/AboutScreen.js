@@ -1,3 +1,4 @@
+//Her importeres de nødvendige React Native-komponenter, nemlig View, Text, og StyleSheet, samt React selv.
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 

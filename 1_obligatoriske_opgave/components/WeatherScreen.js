@@ -6,12 +6,15 @@ const WeatherScreen = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  //hente vejrdata fra API'en, når komponenten først indlæses
   useEffect(() => {
     const apiUrl = 'https://api.open-meteo.com/v1/forecast?latitude=55.6759&longitude=12.5655&hourly=apparent_temperature&daily=temperature_2m_max,temperature_2m_min&current_weather=true&timezone=Europe%2FBerlin';
 
+    //foretage API-anmodninger
     axios
       .get(apiUrl)
       .then((response) => {
+        //gemme vejrdata
         setWeatherData(response.data);
         setLoading(false);
       })
