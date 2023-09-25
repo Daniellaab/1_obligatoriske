@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+
+import HomeScreen from './components/HomeScreen';
+import AboutScreen from './components/AboutScreen';
+import ContactScreen from './components/ContactScreen';
+import WeatherScreen from './components/WeatherScreen';
+import CreateTodoScreen from './components/CreateTodoScreen';
+import MyTodoListsScreen from './components/MyTodoListsScreen';
+import ShareTodoListScreen from './components/ShareTodoListScreen';
+
+
+const Stack = createNativeStackNavigator();
+
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+        <Stack.Screen name="Contact" component={ContactScreen} />
+        <Stack.Screen name="Weather" component={WeatherScreen} />
+        <Stack.Screen name="CreateTodo" component={CreateTodoScreen} />
+        <Stack.Screen name="MyTodoLists" component={MyTodoListsScreen} />
+        <Stack.Screen name="ShareTodoList" component={ShareTodoListScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
